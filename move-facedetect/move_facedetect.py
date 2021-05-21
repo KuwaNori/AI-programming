@@ -1,3 +1,7 @@
+"""
+This is the program for detecting the faces on the frame
+"""
+
 import cv2
 from random import randrange
 
@@ -6,8 +10,10 @@ trained_face_data = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_f
 webcam = cv2.VideoCapture(0)
 
 while True:
+    # get the frame img from webcam
     successful_frame_read, frame = webcam.read()
 
+    # make the frame gray
     grayscaled_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     # detect faces
@@ -16,6 +22,7 @@ while True:
     # draw rectangle around the faces
     for (x,y,w,h) in face_coordinates:
 
+        # draw rectangles around the faces
         cv2.rectangle(frame, (x, y), (x+w, y+h), (randrange(255), randrange(255), randrange(255)), 3)
 
 # show the img with rectangles cover the faces
